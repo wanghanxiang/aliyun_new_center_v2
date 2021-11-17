@@ -1,2 +1,0 @@
-# aliyun_new_center_v2
-部署在阿里云上的简单的爬虫服务

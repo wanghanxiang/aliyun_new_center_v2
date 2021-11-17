@@ -17,7 +17,7 @@ export default class JuejinHouDuanSchedule extends AbstractSchedule {
      * 业务实现
      */
     public async task() {
-        await juejinTask('后端');
+        await juejinTask('后端','houduan');
     }
 
 }

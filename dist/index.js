@@ -40,8 +40,8 @@ class App {
         });
     }
     start() {
-        this.app.listen(8080, () => {
-            console.log("Server running on http://localhost:8080");
+        this.app.listen(3005, () => {
+            console.log("Server running on http://localhost:3005");
         });
     }
 }

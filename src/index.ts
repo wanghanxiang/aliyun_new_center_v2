@@ -8,7 +8,7 @@ const koaBody = require("koa-body");
 import Koa, { Context } from 'koa';              // 导入koa
 import Router from "koa-router";    // 导入koa-router
 import createConnection from "./glues";
-import  ScheduleHelper  from "./util/decorator/timmerMethod";
+import ScheduleHelper from "./util/decorator/timmerMethod";
 
 class App {
     /**
@@ -58,8 +58,8 @@ class App {
     }
 
     public start() {
-        this.app.listen(8080, () => {
-            console.log("Server running on http://localhost:8080");
+        this.app.listen(3005, () => {
+            console.log("Server running on http://localhost:3005");
         });
     }
 }

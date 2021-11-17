@@ -225,6 +225,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/node-schedule@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.nlark.com/@types/node-schedule/download/@types/node-schedule-1.3.2.tgz#cc7e32c6795cbadc8de03d0e1f86311727375423"
+  integrity sha1-zH4yxnlcutyN4D0OH4YxFyc3VCM=
+  dependencies:
+    "@types/node" "*"
+
 "@types/node-xlsx@^0.15.2":
   version "0.15.2"
   resolved "https://registry.nlark.com/@types/node-xlsx/download/@types/node-xlsx-0.15.2.tgz#1371c4af8fe2b6626253f8b85719adfe88355b20"
@@ -239,6 +246,13 @@
   version "15.14.9"
   resolved "https://registry.npmmirror.com/@types/node/download/@types/node-15.14.9.tgz#bc43c990c3c9be7281868bbc7b8fdd6e2b57adfa"
   integrity sha1-vEPJkMPJvnKBhou8e4/dbitXrfo=
+
+"@types/puppeteer@^5.4.4":
+  version "5.4.4"
+  resolved "https://registry.nlark.com/@types/puppeteer/download/@types/puppeteer-5.4.4.tgz#e92abeccc4f46207c3e1b38934a1246be080ccd0"
+  integrity sha1-6Sq+zMT0YgfD4bOJNKEka+CAzNA=
+  dependencies:
+    "@types/node" "*"
 
 "@types/qs@*":
   version "6.9.7"
@@ -768,6 +782,14 @@ create-require@^1.1.0:
   resolved "https://registry.npm.taobao.org/create-require/download/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha1-wdfo8eX2z8n/ZfnNNS03NIdWwzM=
 
+cron-parser@^3.1.0:
+  version "3.5.0"
+  resolved "https://registry.npmmirror.com/cron-parser/download/cron-parser-3.5.0.tgz?cache=0&sync_timestamp=1634058040210&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcron-parser%2Fdownload%2Fcron-parser-3.5.0.tgz#b1a9da9514c0310aa7ef99c2f3f1d0f8c235257c"
+  integrity sha1-sanalRTAMQqn75nC8/HQ+MI1JXw=
+  dependencies:
+    is-nan "^1.3.2"
+    luxon "^1.26.0"
+
 crypto-random-string@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/crypto-random-string/download/crypto-random-string-2.0.0.tgz?cache=0&sync_timestamp=1617610491419&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcrypto-random-string%2Fdownload%2Fcrypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
@@ -874,6 +896,13 @@ defer-to-connect@^1.0.1:
   version "1.1.3"
   resolved "https://registry.nlark.com/defer-to-connect/download/defer-to-connect-1.1.3.tgz#331ae050c08dcf789f8c83a7b81f0ed94f4ac591"
   integrity sha1-MxrgUMCNz3ifjIOnuB8O2U9KxZE=
+
+define-properties@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.nlark.com/define-properties/download/define-properties-1.1.3.tgz#cf88da6cbee26fe6db7094f61d870cbd84cee9f1"
+  integrity sha1-z4jabL7ib+bbcJT2HYcMvYTO6fE=
+  dependencies:
+    object-keys "^1.0.12"
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -1509,6 +1538,14 @@ is-installed-globally@^0.4.0:
     global-dirs "^3.0.0"
     is-path-inside "^3.0.2"
 
+is-nan@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.npm.taobao.org/is-nan/download/is-nan-1.3.2.tgz#043a54adea31748b55b6cd4e09aadafa69bd9e1d"
+  integrity sha1-BDpUreoxdItVts1OCara+mm9nh0=
+  dependencies:
+    call-bind "^1.0.0"
+    define-properties "^1.1.3"
+
 is-npm@^5.0.0:
   version "5.0.0"
   resolved "https://registry.nlark.com/is-npm/download/is-npm-5.0.0.tgz#43e8d65cc56e1b67f8d47262cf667099193f45a8"
@@ -1744,6 +1781,11 @@ lodash@^4.7.0:
   resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
 
+long-timeout@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/long-timeout/download/long-timeout-0.1.1.tgz#9721d788b47e0bcb5a24c2e2bee1a0da55dab514"
+  integrity sha1-lyHXiLR+C8taJMLivuGg2lXatRQ=
+
 lowercase-keys@^1.0.0, lowercase-keys@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/lowercase-keys/download/lowercase-keys-1.0.1.tgz#6f9e30b47084d971a7c820ff15a6c5167b74c26f"
@@ -1760,6 +1802,11 @@ lru-cache@^6.0.0:
   integrity sha1-bW/mVw69lqr5D8rR2vo7JWbbOpQ=
   dependencies:
     yallist "^4.0.0"
+
+luxon@^1.26.0:
+  version "1.28.0"
+  resolved "https://registry.npmmirror.com/luxon/download/luxon-1.28.0.tgz#e7f96daad3938c06a62de0fb027115d251251fbf"
+  integrity sha1-5/ltqtOTjAamLeD7AnEV0lElH78=
 
 make-dir@^3.0.0:
   version "3.1.0"
@@ -1856,6 +1903,15 @@ node-rsa@^1.1.1:
   dependencies:
     asn1 "^0.2.4"
 
+node-schedule@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/node-schedule/download/node-schedule-2.0.0.tgz#73ab4957d056c63708409cc1fab676e0e149c191"
+  integrity sha1-c6tJV9BWxjcIQJzB+rZ24OFJwZE=
+  dependencies:
+    cron-parser "^3.1.0"
+    long-timeout "0.1.1"
+    sorted-array-functions "^1.3.0"
+
 node-xlsx@^0.17.1:
   version "0.17.2"
   resolved "https://registry.nlark.com/node-xlsx/download/node-xlsx-0.17.2.tgz#286215afa63e096d5317a7cb0e5d599cfa1f7b62"
@@ -1919,6 +1975,11 @@ object-inspect@^1.9.0:
   version "1.11.0"
   resolved "https://registry.nlark.com/object-inspect/download/object-inspect-1.11.0.tgz#9dceb146cedd4148a0d9e51ab88d34cf509922b1"
   integrity sha1-nc6xRs7dQUig2eUauI00z1CZIrE=
+
+object-keys@^1.0.12:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/object-keys/download/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
+  integrity sha1-HEfyct8nfzsdrwYWd9nILiMixg4=
 
 on-finished@^2.3.0:
   version "2.3.0"
@@ -2332,6 +2393,11 @@ signal-exit@^3.0.2:
   version "3.0.5"
   resolved "https://registry.npmmirror.com/signal-exit/download/signal-exit-3.0.5.tgz#9e3e8cc0c75a99472b44321033a7702e7738252f"
   integrity sha1-nj6MwMdamUcrRDIQM6dwLnc4JS8=
+
+sorted-array-functions@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npm.taobao.org/sorted-array-functions/download/sorted-array-functions-1.3.0.tgz#8605695563294dffb2c9796d602bd8459f7a0dd5"
+  integrity sha1-hgVpVWMpTf+yyXltYCvYRZ96DdU=
 
 source-map@~0.6.1:
   version "0.6.1"

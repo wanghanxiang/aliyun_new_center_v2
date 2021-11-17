@@ -8,6 +8,7 @@ const koaBody = require("koa-body");
 import Koa, { Context } from 'koa';              // 导入koa
 import Router from "koa-router";    // 导入koa-router
 import createConnection from "./glues";
+import  ScheduleHelper  from "./util/decorator/timmerMethod";
 
 class App {
     /**
@@ -40,7 +41,8 @@ class App {
         }));
         //链接数据库
         await createConnection();
-        
+        //启动定时器
+        await ScheduleHelper.taskListRun();
         // http请求次数限制(目前使用用户的ip来限制的)
         this.app.use(ratelimit((getLimiterConfig((ctx: Context) => ctx.ip, redis))));
 

@@ -1,9 +1,13 @@
 
-const puppeteer = require("puppeteer");
+//const puppeteer = require("puppeteer");
+import puppeteer from 'puppeteer'
 import { redis } from "../../glues/redis";
 
-//获取的title：后端、 人工智能
-const task = async (title: string) => {
+/**
+ * @description 掘金信息任务
+ * @param title 后端、 人工智能
+ */
+export const juejinTask = async (title: string, redisKey: string) => {
     // 打开chrome浏览器
     const browser = await puppeteer.launch({
         //当为true时，客户端不会打开，使用无头模式；为false时，可打开浏览器界面
@@ -23,7 +27,7 @@ const task = async (title: string) => {
         const listSelector = ".entry-list .item a.title";
         // 菜单类别
         const navType = title;//后端、人工智能
-        await page.waitFor(navSelector);
+        await page.waitForSelector(navSelector);
         // 导航列表
         //@ts-ignore
         const navList = await page.$$eval(navSelector, ele => ele.map(el => el.innerText));
@@ -43,8 +47,9 @@ const task = async (title: string) => {
         // 通过选择器找到对应列表项的标题和链接
         //@ts-ignore
         const res = await page.$$eval(listSelector, ele => ele.map(el => ({ url: el.href, title: el.innerText })));
-        console.info(res)
-        await redis.set('houduan', res).catch((e) => {
+        console.info(`[news] juejinhou res`, res);
+        
+        await redis.set('houduan', JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });
         //关闭浏览器

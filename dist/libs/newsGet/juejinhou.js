@@ -1,9 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const puppeteer = require("puppeteer");
+exports.juejinTask = void 0;
+const puppeteer_1 = __importDefault(require("puppeteer"));
 const redis_1 = require("../../glues/redis");
-const task = async (title) => {
-    const browser = await puppeteer.launch({
+const juejinTask = async (title, redisKey) => {
+    const browser = await puppeteer_1.default.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
@@ -15,7 +19,7 @@ const task = async (title) => {
         const navSelector = ".view-nav .nav-item";
         const listSelector = ".entry-list .item a.title";
         const navType = title;
-        await page.waitFor(navSelector);
+        await page.waitForSelector(navSelector);
         const navList = await page.$$eval(navSelector, ele => ele.map(el => el.innerText));
         const webNavIndex = navList.findIndex(item => item === navType);
         await Promise.all([
@@ -26,8 +30,8 @@ const task = async (title) => {
             timeout: 9000
         });
         const res = await page.$$eval(listSelector, ele => ele.map(el => ({ url: el.href, title: el.innerText })));
-        console.info(res);
-        await redis_1.redis.set('houduan', res).catch((e) => {
+        console.info(`[news] juejinhou res`, res);
+        await redis_1.redis.set('houduan', JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });
         await browser.close();
@@ -37,3 +41,4 @@ const task = async (title) => {
         await browser.close();
     }
 };
+exports.juejinTask = juejinTask;

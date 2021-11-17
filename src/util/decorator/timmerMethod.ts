@@ -13,7 +13,8 @@ class ScheduleHelper {
      * 远程配置的定时任务
      */
     private async initTaskFromConfig() {
-        let timerTaskPath = path.resolve('__dirname', '../src/timer');
+        const prod = process.env.NODE_ENV === 'prod';
+        let timerTaskPath = prod ? path.resolve('__dirname', '../dist/timer') : path.resolve('__dirname', '../src/timer');
         console.info(`[schedule]timer路径加载path`, timerTaskPath);
         try {
             const taskList = await readdir(timerTaskPath);

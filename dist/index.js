@@ -12,6 +12,7 @@ const koaBody = require("koa-body");
 const koa_1 = __importDefault(require("koa"));
 const koa_router_1 = __importDefault(require("koa-router"));
 const glues_1 = __importDefault(require("./glues"));
+const timmerMethod_1 = __importDefault(require("./util/decorator/timmerMethod"));
 class App {
     constructor() {
         this.app = new koa_1.default();
@@ -29,6 +30,7 @@ class App {
             }
         }));
         await (0, glues_1.default)();
+        await timmerMethod_1.default.taskListRun();
         this.app.use(ratelimit(((0, limiterReq_1.getLimiterConfig)((ctx) => ctx.ip, redis_1.redis))));
         (0, routes_1.addRouter)(this.router);
         this.app.use(this.router.routes()).use(this.router.allowedMethods());

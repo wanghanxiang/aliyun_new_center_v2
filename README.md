@@ -8,13 +8,17 @@
 
 ### 一、juejin相关
 
-1、juejin信息获取
+#### 1、juejin信息获取
+
 使用的无头浏览器，还不错推荐使用：puppeteer还不错 功能还挺强大的。
 
 参考文档；https://juejin.cn/post/6988479655967719454
+
 官方文档：https://pptr.dev/
 
+如果puppeteer启动不起来可以参考：
 
+https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
 
 ### 二、 相关知识学习
 
@@ -42,3 +46,8 @@ src/util/decorator/timmerMethod.ts
 
 
 
+### 三、项目启动
+
+
+
+docker run -d -p 8006:3005 -m 100M --memory-swap -1 --name="news-server" registry.cn-hangzhou.aliyuncs.com/hanxiang/aliyun_new_center_v2

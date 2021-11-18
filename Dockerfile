@@ -7,11 +7,10 @@ WORKDIR /home/www/aliyunnewscenter
 
 COPY . /home/www/aliyunnewscenter
 
-RUN npm install -g puppeteer
+RUN sudo npm install -g puppeteer --unsafe-perm=true
 
 RUN npm install
  
-
 #EXPOSE 3000
 
 ENTRYPOINT ["npm", "run"]

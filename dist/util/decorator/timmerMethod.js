@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const promises_1 = require("fs/promises");
+const fs_1 = require("fs");
 const path = require('path');
 class ScheduleHelper {
     constructor() {
@@ -30,7 +30,7 @@ class ScheduleHelper {
         let timerTaskPath = prod ? path.resolve('__dirname', '../dist/timer') : path.resolve('__dirname', '../src/timer');
         console.info(`[schedule]timer路径加载path`, timerTaskPath);
         try {
-            const taskList = await (0, promises_1.readdir)(timerTaskPath);
+            const taskList = await this.readdir(timerTaskPath);
             for (const taskItem of taskList) {
                 let taskItemPath = path.resolve(timerTaskPath, taskItem);
                 console.info(`[schedule]timer路径加载taskItem`, taskItemPath);
@@ -56,6 +56,16 @@ class ScheduleHelper {
                 schedule.start();
             }
         }
+    }
+    readdir(filepath) {
+        return new Promise((resolve, reject) => {
+            (0, fs_1.readdir)(filepath, (err, data) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(data);
+            });
+        });
     }
 }
 exports.default = new ScheduleHelper();

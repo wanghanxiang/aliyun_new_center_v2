@@ -1,5 +1,5 @@
 import { AbstractSchedule, IScheduleInfo } from "./AbstractSchedule";
-import { readdir } from 'fs/promises';
+import { readdir } from 'fs';
 const path = require('path');
 
 /**
@@ -17,7 +17,7 @@ class ScheduleHelper {
         let timerTaskPath = prod ? path.resolve('__dirname', '../dist/timer') : path.resolve('__dirname', '../src/timer');
         console.info(`[schedule]timer路径加载path`, timerTaskPath);
         try {
-            const taskList = await readdir(timerTaskPath);
+            const taskList = await this.readdir(timerTaskPath);
             for (const taskItem of taskList) {
                 let taskItemPath = path.resolve(timerTaskPath, taskItem);
                 console.info(`[schedule]timer路径加载taskItem`, taskItemPath);
@@ -47,6 +47,17 @@ class ScheduleHelper {
                 schedule.start();
             }
         }
+    }
+
+    private readdir(filepath: string): Promise<Array<string>> {
+        return new Promise((resolve, reject) => {
+            readdir(filepath, (err, data) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(data);
+            })
+        });
     }
 
 }

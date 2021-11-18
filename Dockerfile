@@ -7,7 +7,10 @@ WORKDIR /home/www/aliyunnewscenter
 
 COPY . /home/www/aliyunnewscenter
 
+RUN npm install -g puppeteer
+
 RUN npm install
+ 
 
 #EXPOSE 3000
 

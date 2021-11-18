@@ -1,6 +1,6 @@
 
-FROM node:12.16
-#FROM node:latest
+#FROM node:12.16
+FROM node:latest
 
 RUN mkdir -p /home/www/aliyunnewscenter
 WORKDIR /home/www/aliyunnewscenter

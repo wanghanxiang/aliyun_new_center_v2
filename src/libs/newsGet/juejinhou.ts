@@ -19,7 +19,7 @@ export const juejinTask = async (title: string, redisKey: string) => {
         const page = await browser.newPage();
         // 跳转到掘金
         await page.goto("https://juejin.im", {
-            'timeout': 1000 * 60 //这里超时是60s
+            'timeout': 1000 * 120 //这里超时是120s
         });
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";

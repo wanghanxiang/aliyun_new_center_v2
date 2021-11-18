@@ -6,7 +6,7 @@ class JuejinRengongSchedule extends AbstractSchedule_1.AbstractSchedule {
     constructor(scheduleInfo) {
         super(scheduleInfo);
         this.scheduleInfo = {
-            corn: '35 */1 * * *',
+            corn: '*/10 * * * *',
             name: 'juejin-rengong',
             switch: true
         };

@@ -14,7 +14,7 @@ const juejinTask = async (title, redisKey) => {
     try {
         const page = await browser.newPage();
         await page.goto("https://juejin.im", {
-            'timeout': 1000 * 60
+            'timeout': 1000 * 120
         });
         const navSelector = ".view-nav .nav-item";
         const listSelector = ".entry-list .item a.title";

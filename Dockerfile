@@ -10,6 +10,9 @@ COPY . /home/www/aliyunnewscenter
 
 RUN npm config set registry "https://registry.npm.taobao.org"
 
+RUN apt-get update \
+    && apt-get install -y wget gnupg 
+
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
 # installs, work. 此处有墙...

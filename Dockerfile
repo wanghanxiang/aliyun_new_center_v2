@@ -1,13 +1,11 @@
 
-FROM node:14.16
+FROM node:12.16
 #FROM node:latest
 
 RUN mkdir -p /home/www/aliyunnewscenter
 WORKDIR /home/www/aliyunnewscenter
 
 COPY . /home/www/aliyunnewscenter
-
-RUN sudo npm install -g puppeteer --unsafe-perm=true
 
 RUN npm install
  

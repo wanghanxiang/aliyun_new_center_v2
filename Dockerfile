@@ -36,4 +36,4 @@ RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localt
  
 #EXPOSE 3000
 
-CMD ["/bin/bash", "-c", "set -e && yarn run start"]
+CMD ["yarn", "run start"]

@@ -20,13 +20,14 @@ RUN apk add --no-cache \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
+RUN yarn config set registry 'https://registry.npm.taobao.org'
 
 RUN yarn add puppeteer@10.2.0
 
 COPY . /home/docker/aliyunnewscenter
 
-RUN yarn config set registry 'https://registry.npm.taobao.org' && \
-    yarn install && \
+
+RUN yarn install && \
     yarn cache clean
 
 
@@ -35,5 +36,4 @@ RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localt
  
 #EXPOSE 3000
 
-ENTRYPOINT ["npm", "run"]
-CMD ["start"]
+CMD ["/bin/bash", "-c", "set -e && yarn run start"]

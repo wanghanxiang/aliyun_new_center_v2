@@ -16,6 +16,8 @@
 
 官方文档：https://pptr.dev/
 
+##### 1.1 puppeteer安装问题
+
 如果puppeteer启动不起来可以参考：
 
 https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
@@ -33,9 +35,83 @@ TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troublesh
     at processTicksAndRejections (internal/process/task_queues.js:84:21)
 (node:17) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
 
+
+
+可以先更新一下下面的依赖：
+
 apt-get update
 
-apt install ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
+apt-get install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+
+
+
+或者参考这个：https://stackoverflow.com/questions/52993002/headless-chrome-node-api-and-puppeteer-installation
+
+
+
+温馨提示：因为在安装puppeteer是会下载chrome的，这里推荐使用cnpm来安装puppeteer。
+
+**cnpm install puppeteer**
+
+在运行的时候还会提醒少各种依赖包，这是后就需要想上面一样安装。
+
+ps：安装依赖比较慢可以使用清华源、163源等
+
+https://mirror.tuna.tsinghua.edu.cn/help/debian/
+
+参考的dockerFile。如果不可以，可以参考项目里面的。
+
+```
+FROM node:12
+WORKDIR /app
+COPY package.json /app/
+RUN apt-get update \
+    && apt-get install -y \
+    gconf-service \ 
+    libasound2 \ 
+    libatk1.0-0 \ 
+    libatk-bridge2.0-0 \ 
+    libc6 \ 
+    libcairo2 \ 
+    libcups2 \ 
+    libdbus-1-3 \ 
+    libexpat1 \ 
+    libfontconfig1 \ 
+    libgcc1 \ 
+    libgconf-2-4 \ 
+    libgdk-pixbuf2.0-0 \ 
+    libglib2.0-0 \ 
+    libgtk-3-0 \ 
+    libnspr4 \ 
+    libpango-1.0-0 \ 
+    libpangocairo-1.0-0 \ 
+    libstdc++6 \ 
+    libx11-6 \ 
+    libx11-xcb1 \ 
+    libxcb1 \ 
+    libxcomposite1 \ 
+    libxcursor1 \ 
+    libxdamage1 \ 
+    libxext6 \ 
+    libxfixes3 \ 
+    libxi6 \ 
+    libxrandr2 \ 
+    libxrender1 \ 
+    libxss1 \ 
+    libxtst6 \ 
+    ca-certificates \ 
+    fonts-liberation \ 
+    libappindicator1 \ 
+    libnss3 \ 
+    lsb-release \ 
+    xdg-utils \ 
+    wget \ 
+    && npm i puppeteer
+COPY . /app
+CMD [ "node", "app.js" ]
+```
+
+
 
 
 ### 二、 相关知识学习

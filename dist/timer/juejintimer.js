@@ -6,7 +6,7 @@ class JuejinHouDuanSchedule extends AbstractSchedule_1.AbstractSchedule {
     constructor(scheduleInfo) {
         super(scheduleInfo);
         this.scheduleInfo = {
-            corn: '10 */4 * * *',
+            corn: '10 */6 * * *',
             name: 'juejin-houtai',
             switch: true
         };

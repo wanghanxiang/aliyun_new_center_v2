@@ -1,34 +1,73 @@
-
-#FROM node:12
+FROM node:14
 #FROM node:latest
-FROM alpine
 
-WORKDIR /home/docker/aliyunnewscenter
+RUN mkdir -p /home/www/aliyunnewscenter
+WORKDIR /home/www/aliyunnewscenter
 
-# Installs latest Chromium (92) package.
-RUN apk add --no-cache \
-      chromium \
-      nss \
-      freetype \
-      harfbuzz \
-      ca-certificates \
-      ttf-freefont \
-      nodejs \
-      yarn
+#使用清华源加速
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free" >/etc/apt/sources.list && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free" >>/etc/apt/sources.list
 
-# 跳过自动安装chrome包. 使用上面已经安装的chrome.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+RUN apt-get clean
+
+RUN apt-get update \
+    && apt-get upgrade -y
+
+RUN apt-get install -y \
+    gconf-service \ 
+    libasound2 \ 
+    libatk1.0-0 \ 
+    libatk-bridge2.0-0 \ 
+    libc6 \ 
+    libcairo2 \ 
+    libcups2 \ 
+    libdbus-1-3 \ 
+    libexpat1 \ 
+    libfontconfig1 \ 
+    #libgcc-s1 \ 
+    libgconf-2-4 \ 
+    #libgdk-pixbuf2.0-0 \ 
+    libglib2.0-0 \ 
+    libgtk-3-0 \ 
+    libnspr4 \ 
+    libpango-1.0-0 \ 
+    libpangocairo-1.0-0 \ 
+    libstdc++6 \ 
+    libx11-6 \ 
+    #libx11-xcb1 \ 
+    libxcb1 \ 
+    libxcomposite1 \ 
+    libxcursor1 \ 
+    libxdamage1 \ 
+    libxext6 \ 
+    libxfixes3 \ 
+    libxi6 \ 
+    libxrandr2 \ 
+    libxrender1 \ 
+    libxss1 \ 
+    libxtst6 \ 
+    ca-certificates \ 
+    fonts-liberation \  
+    libnss3 \ 
+    lsb-release \ 
+    xdg-utils \ 
+    libgbm-dev \ 
+    vim \
+    wget
+
+COPY . /home/www/aliyunnewscenter
 
 
-RUN yarn add puppeteer@10.2.0
+RUN npm install cnpm -g
 
-COPY . /home/docker/aliyunnewscenter
+RUN cnpm install puppeteer
 
-RUN yarn config set registry 'https://registry.npm.taobao.org' && \
-    yarn install && \
-    yarn cache clean
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
+RUN cnpm install
 
 # 设置时区
 RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

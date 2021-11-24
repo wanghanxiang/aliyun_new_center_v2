@@ -15,6 +15,9 @@ const juejinTask = async (title, redisKey) => {
         const page = await browser.newPage();
         await page.goto("https://juejin.im", {
             'timeout': 1000 * 120
+        }).catch((e) => {
+            console.info(`打开页面报错`, e);
+            throw new Error("前往页面报错");
         });
         const navSelector = ".view-nav .nav-item";
         const listSelector = ".entry-list .item a.title";

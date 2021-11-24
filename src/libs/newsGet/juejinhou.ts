@@ -20,6 +20,8 @@ export const juejinTask = async (title: string, redisKey: string) => {
         // 跳转到掘金
         await page.goto("https://juejin.im", {
             'timeout': 1000 * 120 //这里超时是120s
+        }).catch((e) => {
+            console.info(`打开页面报错`, e); throw new Error("前往页面报错");
         });
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";
@@ -48,7 +50,7 @@ export const juejinTask = async (title: string, redisKey: string) => {
         //@ts-ignore
         const res = await page.$$eval(listSelector, ele => ele.map(el => ({ url: el.href, title: el.innerText })));
         console.info(`[news] juejinhou res`, res);
-        
+
         await redis.set('houduan', JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });

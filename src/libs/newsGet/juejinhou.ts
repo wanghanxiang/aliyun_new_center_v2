@@ -12,8 +12,9 @@ export const juejinTask = async (title: string, redisKey: string) => {
     const browser = await puppeteer.launch({
         //当为true时，客户端不会打开，使用无头模式；为false时，可打开浏览器界面
         headless: true,
+        ignoreHTTPSErrors: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-    }).catch((e) => { console.info(`打开浏览器报错`, e); throw new Error("打开浏览器报错"); });
+    });
 
     try {
         // 新建页面
@@ -22,7 +23,7 @@ export const juejinTask = async (title: string, redisKey: string) => {
         await page.goto("https://juejin.im", {
             'timeout': 1000 * 120 //这里超时是120s
         }).catch((e) => {
-            console.info(`打开页面报错`, e); throw new Error("前往页面报错");
+            console.info(`打开页面报错`, e);
         });
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";

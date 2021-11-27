@@ -65,7 +65,7 @@ RUN npm install cnpm -g
 
 RUN cnpm install puppeteer
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+#ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 RUN cnpm install
 

@@ -9,15 +9,15 @@ const redis_1 = require("../../glues/redis");
 const juejinTask = async (title, redisKey) => {
     const browser = await puppeteer_1.default.launch({
         headless: true,
+        ignoreHTTPSErrors: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-    }).catch((e) => { console.info(`打开浏览器报错`, e); throw new Error("打开浏览器报错"); });
+    });
     try {
         const page = await browser.newPage();
         await page.goto("https://juejin.im", {
             'timeout': 1000 * 120
         }).catch((e) => {
             console.info(`打开页面报错`, e);
-            throw new Error("前往页面报错");
         });
         const navSelector = ".view-nav .nav-item";
         const listSelector = ".entry-list .item a.title";

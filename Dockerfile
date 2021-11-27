@@ -74,5 +74,7 @@ RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localt
  
 #EXPOSE 3000
 
-ENTRYPOINT ["npm", "run"]
-CMD ["start"]
+#ENTRYPOINT ["npm", "run"]
+#CMD ["start"]
+#bash 成为顶层进程是比较快的一种方式，bash 进程会负责回收僵尸进程
+CMD ["/bin/bash", "-c", "set -e && npm run start"]

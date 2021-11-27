@@ -10,7 +10,7 @@ const juejinTask = async (title, redisKey) => {
     const browser = await puppeteer_1.default.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    }).catch((e) => { console.info(`打开浏览器报错`, e); throw new Error("打开浏览器报错"); });
     try {
         const page = await browser.newPage();
         await page.goto("https://juejin.im", {
@@ -34,10 +34,10 @@ const juejinTask = async (title, redisKey) => {
         });
         const res = await page.$$eval(listSelector, ele => ele.map(el => ({ url: el.href, title: el.innerText })));
         console.info(`[news] juejinhou res`, res);
-        await redis_1.redis.set('houduan', JSON.stringify(res)).catch((e) => {
+        await browser.close();
+        await redis_1.redis.set(`${title == "后端" ? 'houduan' : 'rengongzhineng'}`, JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });
-        await browser.close();
     }
     catch (e) {
         console.error(`[news] juejinhou ${title} error ${e}`);

@@ -2,14 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.request_tool = void 0;
 const Request = require("request");
-const request_tool = (url, headers) => {
+const request_tool = (url, options) => {
     let param = {
         url,
         encoding: null
     };
-    if (headers && JSON.stringify(headers) != '{}') {
-        param.headers = headers;
-    }
+    param = Object.assign(param, options);
     return new Promise((resolve, reject) => {
         Request(param, (error, response, body) => {
             if (error) {

@@ -13,7 +13,8 @@ export const juejinTask = async (title: string, redisKey: string) => {
         //当为true时，客户端不会打开，使用无头模式；为false时，可打开浏览器界面
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    }).catch((e) => { console.info(`打开浏览器报错`, e); throw new Error("打开浏览器报错"); });
+
     try {
         // 新建页面
         const page = await browser.newPage();
@@ -51,11 +52,13 @@ export const juejinTask = async (title: string, redisKey: string) => {
         const res = await page.$$eval(listSelector, ele => ele.map(el => ({ url: el.href, title: el.innerText })));
         console.info(`[news] juejinhou res`, res);
 
-        await redis.set('houduan', JSON.stringify(res)).catch((e) => {
-            console.error(`[news] juejinhou ${title} redis error ${e}`);
-        });
         //关闭浏览器
         await browser.close();
+
+        await redis.set(`${title == "后端" ? 'houduan' : 'rengongzhineng'}`, JSON.stringify(res)).catch((e) => {
+            console.error(`[news] juejinhou ${title} redis error ${e}`);
+        });
+        
     } catch (e) {
         console.error(`[news] juejinhou ${title} error ${e}`);
         //关闭浏览器

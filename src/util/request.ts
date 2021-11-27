@@ -1,14 +1,12 @@
 import Request = require("request");
 
 
-export const request_tool = (url: string, headers: object) => {
+export const request_tool = (url: string, options: object) => {
     let param: any = {
         url,
         encoding: null
     }
-    if (headers && JSON.stringify(headers) != '{}') {
-        param.headers = headers;
-    }
+    param = Object.assign(param, options);
     return new Promise((resolve, reject) => {
         Request(
             param,

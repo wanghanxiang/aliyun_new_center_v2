@@ -1,14 +1,14 @@
-import { juejinTask } from "../libs/newsGet/juejinhou";
+import { readHub } from "../libs/newsGet/readHub";
 import { AbstractSchedule, IScheduleInfo } from "../util/decorator/AbstractSchedule";
 
 
-export default class JuejinHouDuanSchedule extends AbstractSchedule {
+export default class readHubSchedule extends AbstractSchedule {
 
     constructor(scheduleInfo: IScheduleInfo) {
         super(scheduleInfo);
         this.scheduleInfo = {
-            corn: '10 */6 * * *', //每6小时执行一次
-            name: 'juejin-houtai',
+            corn: '35 */6 * * *', //每6小时执行一次
+            name: 'readHub-task',
             switch: true
         };
     }
@@ -17,7 +17,7 @@ export default class JuejinHouDuanSchedule extends AbstractSchedule {
      * 业务实现
      */
     public async task() {
-        await juejinTask('后端', 'houduan');
+        await readHub();
     }
 
 }

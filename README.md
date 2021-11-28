@@ -16,7 +16,7 @@
 
 官方文档：https://pptr.dev/
 
-##### 1.1 puppeteer安装问题
+##### 1.1问题（一） puppeteer安装问题
 
 如果puppeteer启动不起来可以参考：
 
@@ -111,6 +111,49 @@ COPY . /app
 CMD [ "node", "app.js" ]
 ```
 
+##### 1.2 问题（二）：无法连接问题
+
+```
+打开页面报错 Error: Navigation failed because browser has disconnected!
+    at /home/www/aliyunnewscenter/node_modules/_puppeteer@12.0.0@puppeteer/lib/cjs/puppeteer/common/LifecycleWatcher.js:51:147
+    at /home/www/aliyunnewscenter/node_modules/_puppeteer@12.0.0@puppeteer/lib/cjs/vendor/mitt/src/index.js:51:62
+```
+
+遇到这个问题有两个解决的地方，**一个是运行这个程序的内存需要调大，二是启动浏览器的args地方增加如下代码**：
+
+```javascript
+    // 打开chrome浏览器
+    const browser = await puppeteer.launch({
+        //当为true时，客户端不会打开，使用无头模式；为false时，可打开浏览器界面
+        headless: true,
+        ignoreHTTPSErrors: true,
+        args: ['--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--disable-gpu'
+        ]//'--window-size=1920x1080'
+    });
+```
+
+##### 1.3问题（三）：超时问题
+
+```
+打开页面报错 TimeoutError: Navigation timeout of 120000 ms exceeded
+    at /home/www/aliyunnewscenter/node_modules/_puppeteer@11.0.0@puppeteer/lib/cjs/puppeteer/common/LifecycleWatcher.js:106:111
+```
+
+
+
+可以参考下面的链接： https://ourcodeworld.com/articles/read/1106/how-to-solve-puppeteer-timeouterror-navigation-timeout-of-30000-ms-exceeded
+
+```javascript
+await page.goto('https://ourcodeworld.com', {
+    waitUntil: 'load',
+    // Remove the timeout
+    timeout: 0
+});
+```
 
 
 
@@ -144,4 +187,4 @@ src/util/decorator/timmerMethod.ts
 
 
 
-docker run -d -p 8006:3005 -m 100M --memory-swap -1 --name="news-server" registry.cn-hangzhou.aliyuncs.com/hanxiang/aliyun_new_center_v2
+docker run -d -p 8006:3005 -m 500M --memory-swap -1 --name="news-server" registry.cn-hangzhou.aliyuncs.com/hanxiang/aliyun_new_center_v2

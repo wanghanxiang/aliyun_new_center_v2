@@ -41,7 +41,7 @@
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.0.0",
     "@types/koa__router": "^8.0.4",
-    "@types/puppeteer": "^5.4.4",
+    "@types/puppeteer": "5.4.4",
     "axios": "^0.21.1",
     "bufferhelper": "^0.2.1",
     "cheerio": "^1.0.0-rc.10",
@@ -54,7 +54,7 @@
     "node-rsa": "^1.1.1",
     "node-schedule": "^2.0.0",
     "node-xlsx": "^0.17.1",
-    "puppeteer": "^11.0.0",
+    "puppeteer": "11.0.0",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.2"
   }

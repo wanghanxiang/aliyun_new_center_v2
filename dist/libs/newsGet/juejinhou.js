@@ -10,15 +10,22 @@ const juejinTask = async (title, redisKey) => {
     const browser = await puppeteer_1.default.launch({
         headless: true,
         ignoreHTTPSErrors: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--disable-gpu'
+        ]
     });
     try {
         const page = await browser.newPage();
-        await page.goto("https://juejin.im", {
-            'timeout': 1000 * 120
+        await page.goto("https://juejin.cn", {
+            waitUntil: ['load', 'networkidle0', 'networkidle2'],
+            'timeout': 0
         }).catch((e) => {
             console.info(`打开页面报错`, e);
         });
+        await page.goto("https://juejin.cn");
         const navSelector = ".view-nav .nav-item";
         const listSelector = ".entry-list .item a.title";
         const navType = title;

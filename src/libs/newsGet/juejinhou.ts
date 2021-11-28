@@ -13,18 +13,25 @@ export const juejinTask = async (title: string, redisKey: string) => {
         //当为true时，客户端不会打开，使用无头模式；为false时，可打开浏览器界面
         headless: true,
         ignoreHTTPSErrors: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--disable-gpu'
+        ]//'--window-size=1920x1080'
     });
 
     try {
         // 新建页面
         const page = await browser.newPage();
         // 跳转到掘金
-        await page.goto("https://juejin.im", {
-            'timeout': 1000 * 120 //这里超时是120s
+        await page.goto("https://juejin.cn", {
+            waitUntil: ['load', 'networkidle0', 'networkidle2'],
+            'timeout': 0 //这里超时是120s
         }).catch((e) => {
             console.info(`打开页面报错`, e);
         });
+        await page.goto("https://juejin.cn");
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";
         // 文章列表选择器
@@ -59,7 +66,7 @@ export const juejinTask = async (title: string, redisKey: string) => {
         await redis.set(`${title == "后端" ? 'houduan' : 'rengongzhineng'}`, JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });
-        
+
     } catch (e) {
         console.error(`[news] juejinhou ${title} error ${e}`);
         //关闭浏览器
@@ -67,3 +74,5 @@ export const juejinTask = async (title: string, redisKey: string) => {
     }
 
 }
+
+//juejinTask('人工智能', 'rengongzhineng');

@@ -7,7 +7,7 @@ export default class JuejinHouDuanSchedule extends AbstractSchedule {
     constructor(scheduleInfo: IScheduleInfo) {
         super(scheduleInfo);
         this.scheduleInfo = {
-            corn: '10 */6 * * *', //每6小时执行一次
+            corn: '15 */6 * * *', //每6小时执行一次
             name: 'juejin-houtai',
             switch: true
         };

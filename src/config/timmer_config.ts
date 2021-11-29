@@ -13,8 +13,16 @@ const TIMMER_CONFIG = {
         name: 'readHub-task',
     },
     "cnblog-task": {
-        corn: '40 */12 * * *', //每12小时执行一次
-        name: 'readHub-task',
+        corn: '40 6 * * *',
+        name: 'cnblog-task',
+    },
+    "csdn-rengongzhineng-task": {
+        corn: '45 6-7 * * *',
+        name: 'csdn-rengongzhineng-task',
+    },
+    "csdn-db-task": {
+        corn: '50 6-7 * * *',
+        name: 'csdn-db-task',
     }
 }
 

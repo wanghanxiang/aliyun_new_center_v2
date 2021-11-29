@@ -16,6 +16,8 @@
 
 官方文档：https://pptr.dev/
 
+api文档： https://github.com/puppeteer/puppeteer/blob/main/docs/api.md
+
 ##### 1.1问题（一） puppeteer安装问题
 
 如果puppeteer启动不起来可以参考：

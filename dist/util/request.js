@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.request_tool = void 0;
 const Request = require("request");
 const request_tool = (url, options) => {
+    !options && (options = {});
     let param = {
         url,
         encoding: null

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readHub = void 0;
-const request = require('request');
 const redis_1 = require("../../glues/redis");
 const request_1 = require("../../util/request");
 const url = 'https://api.readhub.cn/topic?lastCursor=&pageSize=20';
@@ -31,7 +30,7 @@ async function readHub() {
                     newArticles.push(items);
                 }
             });
-            await redis_1.redis.set(REDIS_KEY_READHUB, JSON.stringify(newArticles)).catch((e) => {
+            newArticles.length != 0 && await redis_1.redis.set(REDIS_KEY_READHUB, JSON.stringify(newArticles)).catch((e) => {
                 console.error(`[news] readhub ${newArticles} redis error ${e}`);
             });
         }

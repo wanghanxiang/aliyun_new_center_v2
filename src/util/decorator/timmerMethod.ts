@@ -14,7 +14,7 @@ class ScheduleHelper {
      */
     private async initTaskFromConfig() {
         const prod = process.env.NODE_ENV === 'prod';
-        let timerTaskPath = prod ? path.resolve('__dirname', '../dist/timer') : path.resolve('__dirname', '../src/timer');
+        const timerTaskPath = prod ? path.resolve('__dirname', '../dist/timer') : path.resolve('__dirname', '../src/timer');
         console.info(`[schedule]timer路径加载path`, timerTaskPath);
         try {
             const taskList = await this.readdir(timerTaskPath);

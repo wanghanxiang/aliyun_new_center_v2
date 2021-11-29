@@ -247,9 +247,9 @@
   resolved "https://registry.npmmirror.com/@types/node/download/@types/node-15.14.9.tgz#bc43c990c3c9be7281868bbc7b8fdd6e2b57adfa"
   integrity sha1-vEPJkMPJvnKBhou8e4/dbitXrfo=
 
-"@types/puppeteer@^5.4.4":
+"@types/puppeteer@5.4.4":
   version "5.4.4"
-  resolved "https://registry.nlark.com/@types/puppeteer/download/@types/puppeteer-5.4.4.tgz#e92abeccc4f46207c3e1b38934a1246be080ccd0"
+  resolved "https://registry.npmmirror.com/@types/puppeteer/download/@types/puppeteer-5.4.4.tgz#e92abeccc4f46207c3e1b38934a1246be080ccd0"
   integrity sha1-6Sq+zMT0YgfD4bOJNKEka+CAzNA=
   dependencies:
     "@types/node" "*"
@@ -2170,7 +2170,7 @@ pupa@^2.1.1:
   dependencies:
     escape-goat "^2.0.0"
 
-puppeteer@^11.0.0:
+puppeteer@11.0.0:
   version "11.0.0"
   resolved "https://registry.npmmirror.com/puppeteer/download/puppeteer-11.0.0.tgz#0808719c38e15315ecc1b1c28911f1c9054d201f"
   integrity sha1-CAhxnDjhUxXswbHCiRHxyQVNIB8=

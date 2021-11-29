@@ -3,6 +3,12 @@
 import puppeteer from 'puppeteer'
 import { redis } from "../../glues/redis";
 
+const url_map: { [key: string]: string } = {
+    'rengongzhineng': 'https://juejin.cn/ai/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0?sort=newest',//人工智能-深度学习-最新
+    'houduan': 'https://juejin.cn/backend/%E5%90%8E%E7%AB%AF?sort=newest'//后端-后端-最新
+}
+
+
 /**
  * @description 掘金信息任务
  * @param title 后端、 人工智能
@@ -31,7 +37,10 @@ export const juejinTask = async (title: string, redisKey: string) => {
         }).catch((e) => {
             console.info(`打开页面报错`, e);
         });
-        await page.goto("https://juejin.cn");
+
+        let url = url_map[redisKey];
+        await page.goto(url);
+
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";
         // 文章列表选择器
@@ -45,10 +54,12 @@ export const juejinTask = async (title: string, redisKey: string) => {
 
         //@ts-ignore
         const webNavIndex = navList.findIndex(item => item === navType);
-        await Promise.all([
-            page.waitForNavigation(),
-            page.click(`${navSelector}:nth-child(${webNavIndex + 1})`)
-        ]);
+
+        //点击界面-按钮
+        //await Promise.all([
+        //    page.waitForNavigation(),
+        //    page.click(`${navSelector}:nth-child(${webNavIndex + 1})`)
+        //]);
 
         // 等待文章列表选择器加载完成
         await page.waitForSelector(listSelector, {
@@ -63,7 +74,7 @@ export const juejinTask = async (title: string, redisKey: string) => {
         //关闭浏览器
         await browser.close();
 
-        await redis.set(`${title == "后端" ? 'houduan' : 'rengongzhineng'}`, JSON.stringify(res)).catch((e) => {
+        res && await redis.set(redisKey, JSON.stringify(res)).catch((e) => {
             console.error(`[news] juejinhou ${title} redis error ${e}`);
         });
 

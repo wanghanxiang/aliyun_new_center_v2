@@ -1,7 +1,10 @@
 import Request = require("request");
 
 
-export const request_tool = (url: string, options: object) => {
+export const request_tool = (url: string, options?: object) => {
+
+    !options && (options = { });
+
     let param: any = {
         url,
         encoding: null

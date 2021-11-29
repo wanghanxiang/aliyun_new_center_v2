@@ -1,4 +1,3 @@
-const request = require('request');
 import { redis } from "../../glues/redis";
 import { request_tool } from "../../util/request";
 
@@ -37,7 +36,7 @@ export async function readHub() {
                 }
             });
 
-            await redis.set(REDIS_KEY_READHUB, JSON.stringify(newArticles)).catch((e) => {
+            newArticles.length != 0 && await redis.set(REDIS_KEY_READHUB, JSON.stringify(newArticles)).catch((e) => {
                 console.error(`[news] readhub ${newArticles} redis error ${e}`);
             });
         } catch (e) {

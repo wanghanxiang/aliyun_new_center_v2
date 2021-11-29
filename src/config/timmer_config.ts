@@ -1,0 +1,21 @@
+//定时任务时间配置
+const TIMMER_CONFIG = {
+    "juejin-rengong": {
+        corn: '25 6-7 * * *', //6点，7点执行一次
+        name: 'juejin-rengong'
+    },
+    "juejin-houtai": {
+        corn: '15 6-7 * * *', //6点，7点执行一次
+        name: 'juejin-houtai',
+    },
+    "readHub-task": {
+        corn: '35 */6 * * *', //每6小时执行一次
+        name: 'readHub-task',
+    },
+    "cnblog-task": {
+        corn: '40 */12 * * *', //每12小时执行一次
+        name: 'readHub-task',
+    }
+}
+
+export { TIMMER_CONFIG };

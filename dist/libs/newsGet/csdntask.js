@@ -35,7 +35,7 @@ const csdnTask = async (title) => {
             console.info(`打开页面报错`, e);
         });
         const navSelector = ".view-nav .nav-item";
-        const listSelector = ".feedlist_mod .clearfix .list_con .title h2 a";
+        const listSelector = "#floor-blog-index_747 > div > div.blog-content > div.Community > div:nth-child(n) > div > a";
         await page.waitForSelector(listSelector, {
             timeout: 9000
         });

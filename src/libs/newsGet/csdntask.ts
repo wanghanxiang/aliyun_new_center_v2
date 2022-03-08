@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer'
 import { redis } from "../../glues/redis";
 
 const url_map: { [key: string]: string } = {
-    'db': 'https://blog.csdn.net/nav/db',//数据库相关
+    'db': 'https://blog.csdn.net/',//数据库相关 https://blog.csdn.net/nav/db
     'rengongzhineng': 'https://blog.csdn.net/nav/ai'//人工智能
 }
 

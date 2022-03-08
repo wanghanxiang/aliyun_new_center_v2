@@ -46,8 +46,8 @@ export const csdnTask = async (title: string) => {
 
         // 菜单导航选择器
         const navSelector = ".view-nav .nav-item";
-        // 文章列表选择器
-        const listSelector = ".feedlist_mod .clearfix .list_con .title h2 a";
+        // 文章列表选择器 chrome中使用copy selector即可
+        const listSelector = "#floor-blog-index_747 > div > div.blog-content > div.Community > div:nth-child(n) > div > a";
 
         // 等待文章列表选择器加载完成
         await page.waitForSelector(listSelector, {

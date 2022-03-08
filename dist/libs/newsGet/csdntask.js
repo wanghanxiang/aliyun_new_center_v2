@@ -7,7 +7,7 @@ exports.csdnTask = void 0;
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const redis_1 = require("../../glues/redis");
 const url_map = {
-    'db': 'https://blog.csdn.net/nav/db',
+    'db': 'https://blog.csdn.net/',
     'rengongzhineng': 'https://blog.csdn.net/nav/ai'
 };
 const readisKey_map = {
